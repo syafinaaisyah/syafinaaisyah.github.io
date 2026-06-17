@@ -1,1 +1,0 @@
-# syafinaaisyah.github.io
