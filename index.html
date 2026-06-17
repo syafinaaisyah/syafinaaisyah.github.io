@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nur Syafina Aisyah · e-Portfolio</title>
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5faf7;
+            color: #1e2e2f;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            padding-top: 70px;
+        }
+
+        /* SDG 3: Good Health & Well-Being → teal / green palette */
+        :root {
+            --sdg-primary: #1f7a5e;
+            --sdg-light: #e1f0e9;
+            --sdg-accent: #0e4b3a;
+            --sdg-soft: #c7e0d4;
+            --sdg-card-bg: #ffffff;
+            --sdg-shadow: 0 8px 20px rgba(26, 67, 50, 0.08);
+            --sdg-radius: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--sdg-primary);
+        }
+
+        /* ----- STICKY NAV ----- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 12px rgba(0, 20, 10, 0.06);
+            z-index: 1000;
+            padding: 0.6rem 1.5rem;
+            border-bottom: 2px solid var(--sdg-light);
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8rem 1.6rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1f3f36;
+            padding: 0.3rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            border-bottom-color: var(--sdg-primary);
+            color: var(--sdg-accent);
+        }
+
+        /* ----- CONTAINER ----- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2.5rem;
+        }
+
+        /* ----- SECTIONS ----- */
+        section {
+            margin: 3rem 0 4rem;
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 4px solid var(--sdg-soft);
+            color: var(--sdg-accent);
+            display: inline-block;
+        }
+
+        /* ----- HERO / INTRO ----- */
+        .intro-card {
+            background: linear-gradient(145deg, #ffffff, #f4fcf8);
+            padding: 2.2rem 2rem;
+            border-radius: var(--sdg-radius);
+            box-shadow: var(--sdg-shadow);
+            margin-top: 0.5rem;
+            border-left: 8px solid var(--sdg-primary);
+        }
+
+        .intro-card h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--sdg-accent);
+            line-height: 1.2;
+        }
+
+        .intro-card .subhead {
+            font-size: 1.1rem;
+            color: #2a4d40;
+            margin: 0.5rem 0 0.8rem;
+            font-weight: 500;
+        }
+
+        .intro-card p {
+            max-width: 700px;
+            color: #1f3b32;
+        }
+
+        .sdg-badge {
+            display: inline-block;
+            background: var(--sdg-primary);
+            color: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            margin-top: 0.5rem;
+        }
+
+        /* ----- GRID CARDS ----- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--sdg-card-bg);
+            border-radius: var(--sdg-radius);
+            box-shadow: var(--sdg-shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #e3f0ea;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(26, 67, 50, 0.10);
+        }
+
+        .card-content {
+            padding: 1.5rem 1.5rem 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            color: var(--sdg-accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .card .sub {
+            color: #2a5e4a;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.2px;
+        }
+
+        .card p {
+            color: #1d3d32;
+            margin: 0.6rem 0;
+        }
+
+        .card iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: none;
+            border-radius: 12px;
+            background: #d9e8e0;
+            margin: 0.8rem 0;
+        }
+
+        .card .reflection {
+            background: var(--sdg-light);
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            color: #0f3a2b;
+            margin: 0.6rem 0 0.2rem;
+            border-left: 4px solid var(--sdg-primary);
+        }
+
+        .btn-drive {
+            display: inline-block;
+            background: var(--sdg-accent);
+            color: white;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.9rem;
+            align-self: flex-start;
+            transition: 0.15s;
+            border: 1px solid var(--sdg-accent);
+        }
+
+        .btn-drive:hover {
+            background: #0a3b2d;
+            transform: scale(0.98);
+            color: white;
+        }
+
+        /* ----- REFLECTION, SKILLS, RESOURCES ----- */
+        .reflection-full,
+        .skills-box,
+        .resources-box {
+            background: white;
+            border-radius: var(--sdg-radius);
+            padding: 1.8rem 2rem;
+            box-shadow: var(--sdg-shadow);
+            border: 1px solid #e1eee7;
+        }
+
+        .skills-box ul,
+        .resources-box ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem 1.2rem;
+            padding: 0.5rem 0;
+        }
+
+        .skills-box li {
+            background: var(--sdg-light);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #0e4b3a;
+            font-size: 0.95rem;
+        }
+
+        .resources-box li {
+            background: #f0f9f4;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            color: #1b4f3c;
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background: #e2f0e9;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            border-radius: 40px 40px 0 0;
+            margin-top: 3rem;
+            color: #1c4d3b;
+            font-weight: 500;
+            border-top: 2px solid var(--sdg-soft);
+        }
+
+        footer span {
+            margin: 0 0.2rem;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 80px;
+            }
+            nav {
+                gap: 0.4rem 1rem;
+            }
+            nav a {
+                font-size: 0.8rem;
+            }
+            .intro-card h1 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav a {
+                font-size: 0.7rem;
+                padding: 0.2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#labs">Labs</a>
+            <a href="#projects">Projects</a>
+            <a href="#reflection">Reflection</a>
+            <a href="#skills">Skills</a>
+            <a href="#resources">Resources</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- ===== HOME / INTRO ===== -->
+        <section id="home">
+            <div class="intro-card">
+                <h1>Nur Syafina Aisyah binti Rosali</h1>
+                <div class="subhead">A211445 · Software Engineering · Mr Nelson</div>
+                <p>
+                    I am a passionate software engineering student who believes that mobile 
+                    technology can transform how people manage their health and wellness. 
+                    This portfolio documents my journey from building simple UI components 
+                    to creating full-featured health tracking applications with cloud integration.
+                </p>
+                <div class="sdg-badge">🌿 SDG 3 · Good Health & Well-Being</div>
+                <p style="margin-top: 0.7rem; font-weight: 500;">
+                    because accessible digital health tools empower individuals to take 
+                    proactive control of their physical and mental wellbeing.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== LABS ===== -->
+        <section id="labs">
+            <h2 class="section-title">🧪 Labs</h2>
+            <div class="card-grid">
+
+                <!-- Lab 1 -->
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Lab 1 · UI</h3>
+                        <div class="sub">User Interface &amp; Layouts</div>
+                        <iframe src="https://www.youtube.com/embed/-gpPjXoRNXM" title="Lab 1 UI" allowfullscreen></iframe>
+                        <div class="reflection">
+                            <strong>Reflection:</strong> This lab introduced me to Jetpack Compose
+                            fundamentals. I learned to arrange UI elements with Row, Column, and Box,
+                            and gained confidence in building responsive layouts that adapt to
+                            different screen sizes.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lab 2 -->
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Lab 2 · Interaction</h3>
+                        <div class="sub">Event handling &amp; state</div>
+                        <iframe src="https://www.youtube.com/embed/3riIR8RLKks" title="Lab 2 Interaction" allowfullscreen></iframe>
+                        <div class="reflection">
+                            <strong>Reflection:</strong> Working with click events and text input
+                            taught me how to manage state in Compose. I practiced using
+                            <code>remember</code> and <code>mutableStateOf</code> to create
+                            interactive forms and dynamic UI updates.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lab 3 -->
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Lab 3 · Material Design</h3>
+                        <div class="sub">Material 3 theming</div>
+                        <iframe src="https://www.youtube.com/embed/j5e4blgDTS8" title="Lab 3 Material Design" allowfullscreen></iframe>
+                        <div class="reflection">
+                            <strong>Reflection:</strong> I explored Material 3 components such as
+                            Card, Button, and TopAppBar. Applying custom colour schemes and
+                            typography helped me understand how to create a cohesive, accessible
+                            visual identity for health-related apps.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lab 4 -->
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Lab 4 · Navigation</h3>
+                        <div class="sub">Jetpack Navigation</div>
+                        <iframe src="https://www.youtube.com/embed/4ic9qNSHO1k" title="Lab 4 Navigation" allowfullscreen></iframe>
+                        <div class="reflection">
+                            <strong>Reflection:</strong> Implementing NavHost and screen transitions
+                            was a key milestone. I learned to pass arguments between destinations
+                            and handle back stack behaviour, which is essential for multi-screen
+                            health tracking apps.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lab 5 -->
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Lab 5 · Room</h3>
+                        <div class="sub">Local persistence</div>
+                        <iframe src="https://www.youtube.com/embed/YmeWOf4hZdk" title="Lab 5 Room" allowfullscreen></iframe>
+                        <div class="reflection">
+                            <strong>Reflection:</strong> Setting up Room with entities, DAOs, and
+                            coroutines gave me practical experience with offline data storage.
+                            I now feel comfortable performing CRUD operations and querying
+                            relational data asynchronously.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS ===== -->
+        <section id="projects">
+            <h2 class="section-title">📱 Projects</h2>
+            <div class="card-grid">
+
+                <!-- Project 1 -->
+                <div class="card">
+                    <div class="card-content">
+                        <h3>FitTrack · Project 1</h3>
+                        <div class="sub">Lab 4 + Working Features</div>
+                        <p><strong>Problem:</strong> Many individuals struggle to maintain consistent 
+                            fitness routines because they lack a simple, intuitive way to log daily 
+                            activities and monitor their progress over time.
+                        </p>
+                        <iframe src="https://www.youtube.com/embed/uFDnv413wuc" title="Project 1 FitTrack" allowfullscreen></iframe>
+                        <div class="reflection">
+                            <strong>Lessons learned:</strong> Building FitTrack taught me to combine 
+                            navigation with real-time data entry and validation. I improved my skills 
+                            in state management and learned to design a user-friendly dashboard that 
+                            visualises health metrics clearly for better decision-making.
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1IV4TTkltfAbs3CWe8Bb6bojoEDg5mZ3y?usp=sharing" target="_blank" class="btn-drive">📁 View on Google Drive</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card">
+                    <div class="card-content">
+                        <h3>FitTrack · Project 2</h3>
+                        <div class="sub">Lab 5 + API + Sensors + Cloud</div>
+                        <p><strong>Problem:</strong> Users need a holistic health view that combines 
+                            manual activity logs with automatic sensor data and secure cloud backup 
+                            to ensure their progress is never lost and can be accessed anywhere.
+                        </p>
+                        <iframe src="https://www.youtube.com/embed/GOj8esqlbpU" title="Project 2 FitTrack" allowfullscreen></iframe>
+                        <div class="reflection">
+                            <strong>Lessons learned:</strong> Integrating Retrofit, Room, and Firebase 
+                            Firestore showed me the power of a layered architecture. I learned to 
+                            handle sensor data (step counter) and sync it with the cloud while 
+                            maintaining a responsive UI and handling offline scenarios gracefully.
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1s1GcKlNjsdefNRjz6jZrioO4wS1iGq_z?usp=sharing" target="_blank" class="btn-drive">📁 View on Google Drive</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== REFLECTION & LEARNING JOURNEY ===== -->
+        <section id="reflection">
+            <h2 class="section-title">📝 Reflection &amp; Learning Journey</h2>
+            <div class="reflection-full">
+                <p style="font-size: 1.1rem; line-height: 1.6;">
+                    Starting from basic UI components in Lab 1, I gradually built up to complex 
+                    multi-feature applications with each lab adding a new layer of confidence. 
+                    The projects allowed me to synthesise everything I learned into a cohesive 
+                    health tracking solution that combines local persistence, networking, and 
+                    cloud services. I am proud of how far I have come in mobile development 
+                    and excited to continue building tools that make a positive impact on people's lives.
+                </p>
+                <p style="margin-top: 1rem; color: #235b44;">
+                    <strong>SDG 3 connection:</strong> My projects focus on wellbeing
+                    tracking and preventive health, aligning with the goal of ensuring
+                    healthy lives and promoting well-being for all.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS ===== -->
+        <section id="skills">
+            <h2 class="section-title">⚙️ Skills &amp; Tech Stack</h2>
+            <div class="skills-box">
+                <ul>
+                    <li>Kotlin</li>
+                    <li>Jetpack Compose</li>
+                    <li>Room</li>
+                    <li>Retrofit</li>
+                    <li>Firebase Firestore</li>
+                    <li>ML Kit</li>
+                    <li>CameraX</li>
+                    <li>Git &amp; GitHub</li>
+                </ul>
+                <p style="margin-top: 0.8rem; color: #1c4d3b;">
+                    <span style="background: #edf7f1; padding: 0.1rem 0.6rem; border-radius: 40px;">Sensor APIs (Step Counter, Accelerometer)</span>
+                    <span style="background: #edf7f1; padding: 0.1rem 0.6rem; border-radius: 40px; margin-left: 0.5rem;">Material 3 Design</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== RESOURCES ===== -->
+        <section id="resources">
+            <h2 class="section-title">📚 Resources &amp; Acknowledgements</h2>
+            <div class="resources-box">
+                <ul>
+                    <li>Android Developers Documentation</li>
+                    <li>Jetpack Compose APIs</li>
+                    <li>Room Persistence Library</li>
+                    <li>Retrofit 2 · OkHttp</li>
+                    <li>Firebase (Auth &amp; Firestore)</li>
+                    <li>Google Fit API (sensors)</li>
+                    <li>Material Design 3 Guidelines</li>
+                </ul>
+                <p style="margin-top: 1.2rem;">
+                    <strong>AI assistance:</strong> This e‑Portfolio was generated with the
+                    help of an AI assistant to structure the HTML/CSS and ensure responsive,
+                    accessible design. All reflections, problem statements, and lessons
+                    learned are my own work based on my practical experience.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <span>Nur Syafina Aisyah binti Rosali</span> ·
+        <span>A211445</span> ·
+        <span>2026</span>
+    </footer>
+
+</body>
+</html>
